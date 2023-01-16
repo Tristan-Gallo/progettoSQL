@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template,  redirect, url_for, Response
 import pandas as pd
 import pymssql as sql
 from flask_cors import CORS
@@ -12,7 +12,15 @@ app = Flask(__name__)
 CORS(app)
 
 
-conn = sql.connect(server='192.168.40.16\SQLEXPRESS', user= 'biagioni.jacopo', password= 'xxx123##', database='biagioni.jacopo')
+conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'biagioni.jacopo', password= 'xxx123##', database='biagioni.jacopo')
+
+@app.route('/')
+def prova():
+    query = f'select Artist, Song from Brani'
+    df = pd.read_sql(query, conn)
+    dati = list(df.values.tolist())
+    return render_template('brani.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
+
 
 
 @app.route('/pandas/staff')
