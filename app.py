@@ -14,9 +14,25 @@ CORS(app)
 
 conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'biagioni.jacopo', password= 'xxx123##', database='biagioni.jacopo')
 
+
 @app.route('/')
-def prova():
+def home():
+    return render_template('home.html')
+
+@app.route('/ricerca')
+def ricerca():
+    return render_template('home.html')
+
+@app.route('/ricercabrani')
+def ricercabrani():
     query = f'select Artist, Song from Brani'
+    df = pd.read_sql(query, conn)
+    dati = list(df.values.tolist())
+    return render_template('brani.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
+
+@app.route('/brani')
+def brani():
+    query = f'select artista, canzone from brani3 order by asc'
     df = pd.read_sql(query, conn)
     dati = list(df.values.tolist())
     return render_template('brani.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
