@@ -1,42 +1,7 @@
-<style>
-    body {
-    background-image: url("/static/sfondoNero.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-</style>
-<!DOCTYPE html>
-<html>
-<body>
-  <p>
-    <a href="/italia">
-    <img border="0" alt="italia" src="/static/italia.jpg" width="500" height="300">
-    </a>
-  </p>
-  <p>
-    <a href="/francia">
-    <img border="0" alt="francia" src="/static/francia.jpg" width="500" height= "300">
-    </a>
-  </p>
-  <p>
-    <a href="/inghilterra">
-    <img border="0" alt="inghilterra" src="/static/Inghilterra.jpg" width="500" height= "300">
-    </a>
-  </p>
-  <p>
-    <a href="/spagna">
-    <img border="0" alt="spagna" src="/static/spagna.jpg" width="500" height= "300">
-    </a>
-  </p>
-  <p>
-    <a href="/USA">
-    <img border="0" alt="USA" src="/static/USA.png" width="500" height= "300">
-    </a>
-  </p>
-  <p>
-    <a href="/germania">
-    <img border="0" alt="germania" src="/static/germania.png" width="500" height= "300">
-    </a>
-  </p>
-</body>
-</html>
+<form action = '/risultato' method="[GET]">
+    <select name="risultatoselez">
+        {% for each in dropdown_list %}
+            <option value="{{each}}">{{each}}</option>
+        {% endfor %}
+    </select>
+</form>

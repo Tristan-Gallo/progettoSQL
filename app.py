@@ -21,7 +21,14 @@ def home():
 
 @app.route('/ricerca')
 def ricerca():
-    return render_template('home.html')
+    #create a cursor
+    cursor = conn.cursor() 
+    #execute select statement to fetch data to be displayed in combo/dropdown
+    cursor.execute('SELECT JobID,JobName FROM jobs') 
+    #fetch all rows ans store as a set of tuples 
+    joblist = cursor.fetchall() 
+    #render template and send the set of tuples to the HTML file for displaying
+    return render_template('ricerca.html')
 
 @app.route('/ricercabrani')
 def ricercabrani():
@@ -32,12 +39,14 @@ def ricercabrani():
 
 @app.route('/brani')
 def brani():
-    query = f'select artista, canzone from brani3 order by asc'
+    query = f'select artista, canzone from brani3'
     df = pd.read_sql(query, conn)
     dati = list(df.values.tolist())
     return render_template('brani.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
 
-
+@app.route('/ricercabandiere')
+def ricercabandiere():
+    return render_template('ricercabandiere.html')
 
 @app.route('/pandas/staff')
 def getstaff_pandas():
