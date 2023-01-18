@@ -1,7 +1,13 @@
 <form action = '/risultato' method="[GET]">
     <select name="risultatoselez">
-        {% for each in dropdown_list %}
-            <option value="{{each}}">{{each}}</option>
+        {% for n in nazioni %}
+            <option value="{{n}}">{{n}}</option>
         {% endfor %}
     </select>
+    <select name="risultatoselezione">
+        {% for s in settimana %}
+            <option value="{{s}}">{{s}}</option>
+        {% endfor %}
+    </select>
+    <p><input type = "submit" value = "Submit" /></p>
 </form>
