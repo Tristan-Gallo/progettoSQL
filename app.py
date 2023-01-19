@@ -10,11 +10,7 @@ CORS(app)
 conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'biagioni.jacopo', password= 'xxx123##', database='biagioni.jacopo')
 
 
-@app.route('/homepage')
-def home():
-    return render_template('home.html')
-
-@app.route('/ricerca')
+@app.route('/api/ricerca')
 def ricerca():
     #create a cursor
     cursor = conn.cursor(as_dict=True) 
@@ -27,7 +23,7 @@ def ricerca():
     settimana = cursor.fetchall()
     return render_template('ricerca.html', nazioni = nazioni, settimana = settimana)
 
-@app.route('/risultato')
+@app.route('/api/risultato')
 def risultato():
     nazione_selezionata = request.args['nazione_sel']
     settimana_selezionata = request.args['settimana_sel']
@@ -43,7 +39,7 @@ def ricercabrani():
     dati = list(df.values.tolist())
     return render_template('brani.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
 
-@app.route('/brani')
+@app.route('/api/brani')
 def brani():
     query = f'select artista, canzone from brani3'
     df = pd.read_sql(query, conn)
