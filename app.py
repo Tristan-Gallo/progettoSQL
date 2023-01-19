@@ -3,11 +3,6 @@ import pandas as pd
 import pymssql as sql
 from flask_cors import CORS
 
-from os import getenv
-from dotenv import load_dotenv
-load_dotenv()
-
-
 app = Flask(__name__)
 CORS(app)
 
@@ -15,33 +10,31 @@ CORS(app)
 conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'biagioni.jacopo', password= 'xxx123##', database='biagioni.jacopo')
 
 
-@app.route('/')
+@app.route('/homepage')
 def home():
     return render_template('home.html')
 
 @app.route('/ricerca')
 def ricerca():
     #create a cursor
-   # cursor = conn.cursor() 
+    cursor = conn.cursor(as_dict=True) 
     #execute select statement to fetch data to be displayed in combo/dropdown
-   #cursor.execute('SELECT nome_nazione FROM Nazione') 
+    cursor.execute('SELECT nome_nazione FROM Nazione') 
     #fetch all rows ans store as a set of tuples 
-   # nazioni = cursor.fetchall() 
-   # cursor.close()
+    nazioni = cursor.fetchall() 
     #render template and send the set of tuples to the HTML file for displaying
-   # cur = conn.cursor()
-   # cur.execute('SELECT settimana_classifica FROM Brani GROUP BY settimana_classifica HAVING count(settimana_classifica) > 1') 
-   # settimana = cur.fetchall() 
-   # cur.close()
-    query = f'select nome_nazione from nazione'
-    df = pd.read_sql(query,conn)
-    nazioni = list(df.values.tolist())
-    nazioni.sort()
-    query2 = f'select settimana_classifica from Brani group by settimana_classifica having count(settimana_classifica) > 1'
-    df2 = pd.read_sql(query2, conn)
-    settimana = list(df2.values.tolist())
-    settimana.sort()
+    cursor.execute('SELECT settimana_classifica FROM Brani GROUP BY settimana_classifica HAVING count(settimana_classifica) > 1') 
+    settimana = cursor.fetchall()
     return render_template('ricerca.html', nazioni = nazioni, settimana = settimana)
+
+@app.route('/risultato')
+def risultato():
+    nazione_selezionata = request.args['nazione_sel']
+    settimana_selezionata = request.args['settimana_sel']
+    query = f"SELECT Position, Artist, Song FROM Brani WHERE (Nazione = '{nazione_selezionata}') and (settimana_classifica = '{settimana_selezionata}')"
+    dfRisultato = pd.read_sql(query, conn)
+    dati = list(dfRisultato.values.tolist())
+    return render_template('risultato.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
 
 @app.route('/ricercabrani')
 def ricercabrani():
