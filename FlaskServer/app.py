@@ -23,7 +23,7 @@ def ricerca():
     settimana = cursor.fetchall()
     return render_template('ricerca.html', nazioni = nazioni, settimana = settimana)
 
-@app.route('/api/risultato')
+@app.route('/risultato')
 def risultato():
     nazione_selezionata = request.args['nazione_sel']
     settimana_selezionata = request.args['settimana_sel']
@@ -32,12 +32,16 @@ def risultato():
     dati = list(dfRisultato.values.tolist())
     return render_template('risultato.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
 
-@app.route('/ricercabrani')
-def ricercabrani():
-    query = f'select Artist, Song from Brani'
-    df = pd.read_sql(query, conn)
-    dati = list(df.values.tolist())
-    return render_template('brani.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
+@app.route('/artista')
+def artista():
+    data = request.args.get("nomeartista")
+    print("il dato è" + str(data))
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani ' + ('WHERE Artist LIKE %(a)s' if data != None and data != '' else "")
+    cursor = conn.cursor(as_dict=True)
+    p = {"a": f"{data}%"}
+    cursor.execute(q, p)
+    data = cursor.fetchall()
+    return jsonify(data)
 
 @app.route('/brani', methods=['GET'])
 def brani():
@@ -45,7 +49,7 @@ def brani():
     print("il dato è" + str(data))
     q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani ' + ('WHERE Song LIKE %(t)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
-    p = {"t": f"%{data}%"}
+    p = {"t": f"{data}%"}
     cursor.execute(q, p)
     data = cursor.fetchall()
     return jsonify(data)

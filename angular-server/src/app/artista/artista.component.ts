@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 @Component({
-  selector: 'app-brani',
-  templateUrl: './brani.component.html',
-  styleUrls: ['./brani.component.css']
+  selector: 'app-artista',
+  templateUrl: './artista.component.html',
+  styleUrls: ['./artista.component.css']
 })
-export class BraniComponent {
-  titoloc! : any;
+export class ArtistaComponent {
+  nomeartista! : any;
   loading! : Boolean;
-  url: string = "https://3245-tristangall-progettosql-hfe0t9wa4vc.ws-eu83.gitpod.io/brani"
+  url: string = "https://3245-tristangall-progettosql-hfe0t9wa4vc.ws-eu83.gitpod.io/artista"
 
   constructor(public http: HttpClient) {
     this.get(this.url);
@@ -17,12 +17,13 @@ export class BraniComponent {
   get(url: string): void {
     this.loading = true;
     this.http.get(url).subscribe(data => {
-      this.titoloc = data;
+      this.nomeartista = data;
       this.loading = false;
     });
   }
 
   onKey(value: string) {
-    this.get(this.url + "?titoloc=" + value);
+    this.get(this.url + "?nomeartista=" + value);
   }
+
 }

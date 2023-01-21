@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { RicercaComponent } from './ricerca/ricerca.component';
 import { RicercabandieraComponent } from './ricercabandiera/ricercabandiera.component';
 import { BraniComponent } from './brani/brani.component';
+import { ArtistaComponent } from './artista/artista.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BraniComponent } from './brani/brani.component';
     HomeComponent,
     RicercaComponent,
     RicercabandieraComponent,
-    BraniComponent
+    BraniComponent,
+    ArtistaComponent
   ],
   imports: [
     BrowserModule,
