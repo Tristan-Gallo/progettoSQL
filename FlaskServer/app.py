@@ -9,36 +9,13 @@ CORS(app)
 
 conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'biagioni.jacopo', password= 'xxx123##', database='biagioni.jacopo')
 
-
-@app.route('/ricerca')
-def ricerca():
-    #create a cursor
-    cursor = conn.cursor(as_dict=True) 
-    #execute select statement to fetch data to be displayed in combo/dropdown
-    cursor.execute('SELECT nome_nazione FROM Nazione') 
-    #fetch all rows ans store as a set of tuples 
-    nazioni = cursor.fetchall() 
-    #render template and send the set of tuples to the HTML file for displaying
-    cursor.execute('SELECT settimana_classifica FROM Brani GROUP BY settimana_classifica HAVING count(settimana_classifica) > 1') 
-    settimana = cursor.fetchall()
-    return render_template('ricerca.html', nazioni = nazioni, settimana = settimana)
-
-@app.route('/risultato')
-def risultato():
-    nazione_selezionata = request.args['nazione_sel']
-    settimana_selezionata = request.args['settimana_sel']
-    query = f"SELECT Position, Artist, Song FROM Brani WHERE (Nazione = '{nazione_selezionata}') and (settimana_classifica = '{settimana_selezionata}')"
-    dfRisultato = pd.read_sql(query, conn)
-    dati = list(dfRisultato.values.tolist())
-    return render_template('risultato.html', nomiColonne = df.columns.values, dati = list(df.values.tolist()))
-
-@app.route('/artista')
+@app.route('/artista', methods=['GET'])
 def artista():
     data = request.args.get("nomeartista")
-    print("il dato è" + str(data))
+    print("il dato è " + str(data))
     q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani ' + ('WHERE Artist LIKE %(a)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
-    p = {"a": f"{data}%"}
+    p = {"a": f"%{data}%"}
     cursor.execute(q, p)
     data = cursor.fetchall()
     return jsonify(data)
@@ -46,7 +23,7 @@ def artista():
 @app.route('/brani', methods=['GET'])
 def brani():
     data = request.args.get("titoloc")
-    print("il dato è" + str(data))
+    print("il dato è " + str(data))
     q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani ' + ('WHERE Song LIKE %(t)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
     p = {"t": f"{data}%"}
@@ -54,10 +31,71 @@ def brani():
     data = cursor.fetchall()
     return jsonify(data)
 
-@app.route('/ricercabandiere')
-def ricercabandiere():
-    return render_template('ricercabandiere.html')
+@app.route('/italia', methods=['GET'])
+def italia():
+    data = request.args.get("citalia")
+    print("il dato è " + str(data))
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani WHERE nazione_id = 1' + ('WHERE Song LIKE %(i)s' if data != None and data != '' else "")
+    cursor = conn.cursor(as_dict=True)
+    p = {"i": f"{data}%"}
+    cursor.execute(q, p)
+    data = cursor.fetchall()
+    return jsonify(data)
 
+@app.route('/francia', methods=['GET'])
+def francia():
+    data = request.args.get("cfrancia")
+    print("il dato è " + str(data))
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani WHERE nazione_id = 5' + ('WHERE Song LIKE %(i)s' if data != None and data != '' else "")
+    cursor = conn.cursor(as_dict=True)
+    p = {"i": f"{data}%"}
+    cursor.execute(q, p)
+    data = cursor.fetchall()
+    return jsonify(data)
+
+@app.route('/globale', methods=['GET'])
+def globale():
+    data = request.args.get("cglobale")
+    print("il dato è " + str(data))
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani WHERE nazione_id = 0' + ('WHERE Song LIKE %(i)s' if data != None and data != '' else "")
+    cursor = conn.cursor(as_dict=True)
+    p = {"i": f"{data}%"}
+    cursor.execute(q, p)
+    data = cursor.fetchall()
+    return jsonify(data)
+
+@app.route('/spagna', methods=['GET'])
+def spagna():
+    data = request.args.get("cspagna")
+    print("il dato è " + str(data))
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani WHERE nazione_id = 3' + ('WHERE Song LIKE %(i)s' if data != None and data != '' else "")
+    cursor = conn.cursor(as_dict=True)
+    p = {"i": f"{data}%"}
+    cursor.execute(q, p)
+    data = cursor.fetchall()
+    return jsonify(data)
+
+@app.route('/inghilterra', methods=['GET'])
+def inghilterra():
+    data = request.args.get("cinghilterra")
+    print("il dato è " + str(data))
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani WHERE nazione_id = 4' + ('WHERE Song LIKE %(i)s' if data != None and data != '' else "")
+    cursor = conn.cursor(as_dict=True)
+    p = {"i": f"{data}%"}
+    cursor.execute(q, p)
+    data = cursor.fetchall()
+    return jsonify(data)
+
+@app.route('/USA', methods=['GET'])
+def usa():
+    data = request.args.get("cusa")
+    print("il dato è " + str(data))
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani WHERE nazione_id = 2' + ('WHERE Song LIKE %(i)s' if data != None and data != '' else "")
+    cursor = conn.cursor(as_dict=True)
+    p = {"i": f"{data}%"}
+    cursor.execute(q, p)
+    data = cursor.fetchall()
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=3245)

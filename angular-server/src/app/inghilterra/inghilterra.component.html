@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <input #box (keyup)="onKey(box.value)" class="form-control mt-3 mb-3">
+    <p *ngIf="loading">LOADING...</p>
+    <table *ngIf="!loading && cinghilterra.length >= 1" class="table table-striped">
+      <thead>
+      <th>Posizione</th>
+      <th>Artista</th>
+      <th>Canzone</th>
+      <th>Settimana classifica</th>
+      <th>Nazione</th>
+            
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of cinghilterra">
+          <td>{{ i.Position }}</td>
+          <td>{{ i.Artist }}</td>
+          <td>{{ i.Song }}</td>
+          <td>{{ i.settimana_classifica }}</td>
+          <td>{{ i.Nazione }}</td>
+              
+        </tr>
+        </tbody>
+    </table>
+      <div class="alert alert-danger" *ngIf="cinghilterra.length < 1">Non esiste la canzone inserita</div>
+</div>

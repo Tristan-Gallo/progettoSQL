@@ -26,7 +26,8 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "/workspace/progettoSQL/angular-server/src/app/home/home.component.css"
             ],
             "scripts": []
           },
