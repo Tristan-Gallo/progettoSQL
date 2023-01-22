@@ -10,6 +10,7 @@ import { RicercaComponent } from './ricerca/ricerca.component';
 import { RicercabandieraComponent } from './ricercabandiera/ricercabandiera.component';
 import { BraniComponent } from './brani/brani.component';
 import { ArtistaComponent } from './artista/artista.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ArtistaComponent } from './artista/artista.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
