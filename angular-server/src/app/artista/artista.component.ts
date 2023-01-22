@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http'
 export class ArtistaComponent {
   nomeartista! : any;
   loading! : Boolean;
-  url: string = "https://3245-tristangall-progettosql-hfe0t9wa4vc.ws-eu83.gitpod.io/artista"
+  url: string = "https://3245-tristangall-progettosql-gxyhtwzjxfz.ws-eu83.gitpod.io/artista"
 
   constructor(public http: HttpClient) {
     this.get(this.url);

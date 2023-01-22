@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http'
 export class BraniComponent {
   titoloc! : any;
   loading! : Boolean;
-  url: string = "https://3245-tristangall-progettosql-dscfg62njj6.ws-eu83.gitpod.io/brani"
+  url: string = "https://3245-tristangall-progettosql-gxyhtwzjxfz.ws-eu83.gitpod.io/brani"
 
   constructor(public http: HttpClient) {
     this.get(this.url);
