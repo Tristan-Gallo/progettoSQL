@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArtistaComponent } from './artista/artista.component';
+import { Artista2Component } from './artista2/artista2.component';
 import { BraniComponent } from './brani/brani.component';
 import { FranciaComponent } from './francia/francia.component';
 import { GlobaleComponent } from './globale/globale.component';
@@ -9,6 +10,7 @@ import { InghilterraComponent } from './inghilterra/inghilterra.component';
 import { ItaliaComponent } from './italia/italia.component';
 import { RicercabandieraComponent } from './ricercabandiera/ricercabandiera.component';
 import { SpagnaComponent } from './spagna/spagna.component';
+import { Top10Component } from './top10/top10.component';
 import { UsaComponent } from './usa/usa.component';
 
 const routes: Routes = [
@@ -21,7 +23,9 @@ const routes: Routes = [
   { 'path' : 'inghilterra', component: InghilterraComponent},
   { 'path' : 'spagna', component: SpagnaComponent},
   { 'path' : 'globale', component: GlobaleComponent},
-  { 'path' : 'USA', component: UsaComponent}
+  { 'path' : 'USA', component: UsaComponent},
+  { 'path' : 'top10', component: Top10Component},
+  { 'path' : 'artista2', component: Artista2Component}
 ]
 
 @NgModule({

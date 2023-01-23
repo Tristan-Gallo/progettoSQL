@@ -31,11 +31,20 @@ def brani():
     data = cursor.fetchall()
     return jsonify(data)
 
+@app.route('/artista2', methods=['GET'])
+def artista2():
+    q = 'SELECT TOP 10 Artist, count(*) as numero_artista FROM Brani GROUP BY Artist ORDER BY numero DESC'
+    cursor = conn.cursor(as_dict=True)
+    p = {}
+    cursor.execute(q, p)
+    data = cursor.fetchall()
+    return jsonify(data)
+
 @app.route('/italia', methods=['GET'])
 def italia():
     data = request.args.get("citalia")
     print("il dato è " + str(data))
-    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani WHERE nazione_id = 1' + ('WHERE Song LIKE %(i)s' if data != None and data != '' else "")
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani' + ('WHERE Song LIKE %(i)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
     p = {"i": f"{data}%"}
     cursor.execute(q, p)
