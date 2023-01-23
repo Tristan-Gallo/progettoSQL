@@ -4,8 +4,8 @@
         <th>Numero di volte in classifica</th>   
     </thead>
     <tbody>
-      <tr *ngFor="let t of top10artista">
-        <td>{{ t.Artist }}</td>
+      <tr *ngFor="let t of top10artista;let i = index">
+        <td><a href='https://it.wikipedia.org/wiki/Drake_(cantante)'>{{ t.Artist }}</a></td>
         <td>{{ t.numero_artista }}</td>
       </tr>
       </tbody>

@@ -1,0 +1,14 @@
+<table class="table table-striped">
+    <thead>
+        <th>Canzone</th>
+        <th>Artista</th>
+        <th>Numero di volte in classifica</th>   
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of top10brani">
+        <td>{{ t.Song }}</td>
+        <td>{{ t.Artist }}</td>
+        <td>{{ t.numero_brani }}</td>
+      </tr>
+      </tbody>
+  </table>

@@ -18,6 +18,7 @@ import { InghilterraComponent } from './inghilterra/inghilterra.component';
 import { UsaComponent } from './usa/usa.component';
 import { Artista2Component } from './artista2/artista2.component';
 import { Top10Component } from './top10/top10.component';
+import { Brani2Component } from './brani2/brani2.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { Top10Component } from './top10/top10.component';
     InghilterraComponent,
     UsaComponent,
     Artista2Component,
-    Top10Component
+    Top10Component,
+    Brani2Component
   ],
   imports: [
     BrowserModule,

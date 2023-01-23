@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http'
 export class UsaComponent {
   cusa! : any;
   loading! : Boolean;
-  url: string = "https://3245-tristangall-progettosql-ex81yqcvwuk.ws-eu83.gitpod.io/USA"
+  url: string = "https://3245-tristangall-progettosql-u67f59eepgx.ws-eu83.gitpod.io/USA"
 
   constructor(public http: HttpClient) {
     this.get(this.url);

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArtistaComponent } from './artista/artista.component';
 import { Artista2Component } from './artista2/artista2.component';
 import { BraniComponent } from './brani/brani.component';
+import { Brani2Component } from './brani2/brani2.component';
 import { FranciaComponent } from './francia/francia.component';
 import { GlobaleComponent } from './globale/globale.component';
 import { HomeComponent } from './home/home.component';
@@ -25,7 +26,8 @@ const routes: Routes = [
   { 'path' : 'globale', component: GlobaleComponent},
   { 'path' : 'USA', component: UsaComponent},
   { 'path' : 'top10', component: Top10Component},
-  { 'path' : 'artista2', component: Artista2Component}
+  { 'path' : 'artista2', component: Artista2Component},
+  { 'path' : 'brani2', component: Brani2Component}
 ]
 
 @NgModule({

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <input #box (keyup)="onKey(box.value)" class="form-control mt-3 mb-3">
     <p *ngIf="loading">LOADING...</p>
-    <table *ngIf="!loading && titoloc.length >= 1" class="table table-striped">
+    <table *ngIf="!loading && titoloc.length >= 1" class="table table-striped table-bordered table-hover">
       <thead>
       <th>Posizione</th>
       <th>Artista</th>
@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let t of titoloc">
-          <td>{{ t.Position }}</td>
+          <th scope="row">{{ t.Position }}</th>
           <td>{{ t.Artist }}</td>
           <td>{{ t.Song }}</td>
           <td>{{ t.settimana_classifica }}</td>

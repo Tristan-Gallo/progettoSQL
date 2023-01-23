@@ -1,0 +1,40 @@
+#italia{
+    left:50%;
+    top:20%;
+    position: absolute;
+}
+#francia{
+    left:30%;
+    top:40%;
+    position: absolute;
+    border-color: rgb(0, 0, 0);
+}
+#inghilterra{
+    left:30%;
+    top:20%;
+    position: absolute;
+}
+#spagna{
+    left:50%;
+    top:60%;
+    position: absolute;
+    border-color: rgb(0, 0, 0);
+}
+#USA{
+    left:30%;
+    top:60%;
+    position: absolute;
+    border-color: rgb(0, 0, 0);
+}
+#globale{
+    left:50%;
+    top:40%;
+    position: absolute;
+    border-color: rgb(0, 0, 0);
+}
+*{
+    background-color:rgb(41, 218, 241);
+}
+.bkg{
+    background-color:rgb(41, 218, 241);
+}
