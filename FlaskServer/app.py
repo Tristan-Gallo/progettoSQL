@@ -29,14 +29,14 @@ def brani():
     p = {"t": f"{data}%"}
     cursor.execute(q, p)
     data = cursor.fetchall()
+    
     return jsonify(data)
 
 @app.route('/artista2', methods=['GET'])
 def artista2():
     q = 'SELECT TOP 10 Artist, count(*) as numero_artista FROM Brani GROUP BY Artist ORDER BY numero DESC'
     cursor = conn.cursor(as_dict=True)
-    p = {}
-    cursor.execute(q, p)
+    cursor.execute(q)
     data = cursor.fetchall()
     return jsonify(data)
 
