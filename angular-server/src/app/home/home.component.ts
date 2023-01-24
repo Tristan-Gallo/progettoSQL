@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { constructor } from 'jasmine';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +8,11 @@ import { constructor } from 'jasmine';
 export class HomeComponent {
   logo!: string;
   
-}
 
-constructor();{
+  constructor(){
   
-  this.logo = './assets/images/logo.png'
+    this.logo = './assets/images/logo.png'
   
   }
 }
+

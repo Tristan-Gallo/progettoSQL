@@ -12,8 +12,6 @@ export class RicercabandieraComponent {
   bandiera_spagna: string;
   bandiera_usa: string;
   bandiera_globale: string;
-  logo!: string;
-
 
   constructor(){
     this.bandiera_italia = './assets/images/italia.jpg'
