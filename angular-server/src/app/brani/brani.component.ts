@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+
 @Component({
   selector: 'app-brani',
   templateUrl: './brani.component.html',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http'
 export class BraniComponent {
   titoloc! : any;
   loading! : Boolean;
-  url: string = "https://3245-tristangall-progettosql-ogaeqmlue3h.ws-eu83.gitpod.io/brani"
+  url: string = "https://3245-tristangall-progettosql-5so8n1dwjqx.ws-eu84.gitpod.io/brani"
 
   constructor(public http: HttpClient) {
     this.get(this.url);

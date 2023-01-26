@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'biagioni.jacopo', 
 def artista():
     data = request.args.get("nomeartista")
     print("il dato è " + str(data))
-    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani' + ('WHERE Artist LIKE %(a)s' if data != None and data != '' else "")
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani  ' + ('WHERE Artist LIKE %(a)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
     p = {"a": f"%{data}%"}
     cursor.execute(q, p)
@@ -24,7 +24,7 @@ def artista():
 def brani():
     data = request.args.get("titoloc")
     print("il dato è " + str(data))
-    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani' + ('WHERE Song LIKE %(t)s' if data != None and data != '' else "")
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani  ' + ('WHERE Song LIKE %(t)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
     p = {"t": f"{data}%"}
     cursor.execute(q, p)
@@ -50,7 +50,7 @@ def brani2():
 def italia():
     data = request.args.get("citalia")
     print("il dato è " + str(data))
-    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani' + ('WHERE nazione_id = 1 and Song LIKE %(i)s' if data != None and data != '' else "")
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani  ' + ('WHERE nazione_id = 1 and Song LIKE %(i)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
     p = {"i": f"{data}%"}
     cursor.execute(q, p)
@@ -105,7 +105,7 @@ def inghilterra():
 def usa():
     data = request.args.get("cusa")
     print("il dato è " + str(data))
-    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani' + ('WHERE nazione_id = 2 and Song LIKE %(i)s' if data != None and data != '' else "")
+    q = 'SELECT Position, Artist, Song, settimana_classifica, Nazione FROM Brani  ' + ('WHERE nazione_id = 2 and Song LIKE %(i)s' if data != None and data != '' else "")
     cursor = conn.cursor(as_dict=True)
     p = {"i": f"{data}%"}
     cursor.execute(q, p)
